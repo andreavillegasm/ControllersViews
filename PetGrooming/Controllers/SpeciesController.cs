@@ -71,7 +71,7 @@ namespace PetGrooming.Controllers
             SqlParameter param = new SqlParameter("@id", id);
 
             //Species selectedspecies = db.Species.SqlQuery(query, param).FirstOrDefault();
-            Species selectedspecies = db.Species.SqlQuery(query, param).First();
+            Species selectedspecies = db.Species.SqlQuery(query, param).FirstOrDefault();
 
 
             return View(selectedspecies);
