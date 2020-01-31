@@ -34,12 +34,16 @@ namespace PetGrooming.Controllers
         }
 
         // Show
-        /*
         public ActionResult Show(int id)
         {
-
+            // Pet pet = db.Pets.Find(id); //EF 6 technique
+            Species species = db.Species.SqlQuery("select * from species where speciesid=@SpeciesID", new SqlParameter("@SpeciesID", id)).FirstOrDefault();
+            return View(species);
         }
-        */
+
+
+
+
         // Add
         public ActionResult Add()
         {
@@ -51,7 +55,9 @@ namespace PetGrooming.Controllers
         public ActionResult Add(string SpeciesName)
         {
             string query = "insert into species (Name) values (@SpeciesName)";
-            SqlParameter param = new SqlParameter(@SpeciesName, SpeciesName);
+            SqlParameter param = new SqlParameter("@SpeciesName", SpeciesName);
+
+            db.Database.ExecuteSqlCommand(query, param);
 
             return RedirectToAction("List");
         }
@@ -60,14 +66,18 @@ namespace PetGrooming.Controllers
         public ActionResult Update(int id)
         {
             //We need the species name
-            string query = "select * from species where SpeciesID = @ id";
+            //This update brings the values into the form by sending the info through id
+            string query = "select * from species where SpeciesID = @id";
             SqlParameter param = new SqlParameter("@id", id);
 
-            Species selectedspecies = db.Species.SqlQuery(query, param).FirstOrDefault();
+            //Species selectedspecies = db.Species.SqlQuery(query, param).FirstOrDefault();
+            Species selectedspecies = db.Species.SqlQuery(query, param).First();
+
 
             return View(selectedspecies);
         }
         // [HttpPost] Update
+        //Updates the values of the table
         [HttpPost]
         public ActionResult Update(int id, string SpeciesName)
         {
@@ -75,6 +85,8 @@ namespace PetGrooming.Controllers
             SqlParameter[] sqlparams = new SqlParameter[2];
             sqlparams[0] =  new SqlParameter("@SpeciesName", SpeciesName);
             sqlparams[1] = new SqlParameter("@id", id);
+
+            db.Database.ExecuteSqlCommand(query, sqlparams);
 
 
             return RedirectToAction("List");
@@ -85,6 +97,7 @@ namespace PetGrooming.Controllers
         {
             string query = "delete from species where SpeciesID=@id";
             SqlParameter sqlparam = new SqlParameter("id", id);
+
             db.Database.ExecuteSqlCommand(query, sqlparam);
 
             return RedirectToAction("List");
