@@ -6,7 +6,7 @@
 }
 
 <h2>Update</h2>
-<a href="/Pet/List">Back to List</a>
+<a href="/Pet/List" class="back-button">Back to List</a>
 <form action="/Pet/Update/@Model.pet.PetID" method="POST">
     <span>Pet Name</span><input type="text" value="@Model.pet.PetName" id="PetName" name="PetName"/><br />
     <span>Pet Color</span><input type="text" value="@Model.pet.Color" id="PetColor" name="PetColor"/><br />

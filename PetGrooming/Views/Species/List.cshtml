@@ -6,14 +6,18 @@
 }
 
 <h2>List of Species</h2>
-<a href="/Species/Add/">Add a Species</a>
+<a href="/Species/Add/" class="back-button">Add a Species</a>
 @{ 
     foreach (var species in @Model) {
 
-    <div>
-        <span><a href="/Species/Show/@species.SpeciesID">@species.Name</a></span>
-        <span><a href="/Species/Update/@species.SpeciesID">Update</a></span>
-        <span><a href="/Species/Delete/@species.SpeciesID">Delete</a></span>
+    <div class="info-container">
+        <div>
+            <span class="name"><a href="/Species/Show/@species.SpeciesID">@species.Name</a></span>
+        </div>
+        <div>
+            <span><a href="/Species/Update/@species.SpeciesID">Update</a></span>
+            <span><a href="/Species/Delete/@species.SpeciesID">Delete</a></span>
+        </div>
     </div>
     }
 }

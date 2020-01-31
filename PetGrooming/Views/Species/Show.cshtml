@@ -4,10 +4,12 @@
 }
 
 <h2>Show Species</h2>
-<a href="/Species/List/">Back to List</a>
+<a href="/Species/List/" class="back-button">Back to List</a>
 
-<div>Name : @Model.Name</div>
-<div> List of Animals that are this particular species</div>
+<div class="info-container">Name : @Model.Name</div>
+
+<!-- Additonal stuff that can be added later-->
+<div class="info-container"> List of Animals that are this particular species</div>
 
 <a href="/Species/Update/@Model.SpeciesID">Update</a>
 <a href="/Species/Delete/@Model.SpeciesID">Delete</a>

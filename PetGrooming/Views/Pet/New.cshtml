@@ -4,11 +4,12 @@
 }
 
 <h2>Add a New Pet</h2>
-<a href="/Pet/List">Back to List</a>
+<a href="/Pet/List" class="back-button">Back to List</a>
 
 <form method="POST" action="/Pet/Add">
     <!-- TODO: format this nicely -->
-    <div><span>Name:</span><input id="PetName" type="text" name="PetName" /></div>
+    <div><span>Name:</span>
+    <input id="PetName" type="text" name="PetName" /></div>
     <div>
         <span>Species:</span>
         <select id="SpeciesID" type="text" name="SpeciesID">
@@ -23,11 +24,17 @@
             }
         </select>
     </div>
-    <div><span>Weight:</span><input id="PetWeight" type="text" name="PetWeight" />KG</div>
-    <div><span>Color:</span><input id="PetColor" type="text" name="PetColor" /></div>
-    <div>Notes:</div>
-    <textarea id="PetNotes" name="PetNotes">
-
-    </textarea>
+    <div>
+        <span>Weight:</span>
+        <input id="PetWeight" type="text" name="PetWeight" />KG
+    </div>
+    <div>
+        <span>Color:</span>
+        <input id="PetColor" type="text" name="PetColor" />
+    </div>
+    <div>
+        <span> Notes:</span>
+        <textarea id="PetNotes" name="PetNotes"></textarea>
+    </div>
     <input type="submit" value="Add Pet">
 </form>

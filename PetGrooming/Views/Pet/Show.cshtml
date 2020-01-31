@@ -5,14 +5,19 @@
 }
 
 <h2>Show Pet</h2>
-<a href="/Pet/List">Back to List</a>
+<a href="/Pet/List" class="back-button">Back to List</a>
 
 
+<div class="info-container">
+    <div>Name : @Model.PetName</div>
+    <div>Weight : @Model.Weight</div>
+    <div>Species : @Model.Species.Name</div>
+    <div>Notes : @Model.Notes</div>
+</div>
 
-<div>Name : @Model.PetName</div>
-<div>Weight : @Model.Weight</div>
-<div>Species : @Model.Species.Name</div>
-<div>Notes : @Model.Notes</div>
+<!-- Additonal Stuff that can be added later-->
+<div class="info-container"> List  of Owners</div>
+<div class="info-container"> List  of Appointments</div>
 
 
 <a href="/Pet/Update/@Model.PetID">Update</a>

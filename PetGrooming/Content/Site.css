@@ -22,3 +22,14 @@ select,
 textarea {
     max-width: 280px;
 }
+.info-container {
+    background-color:aliceblue;
+    margin-bottom: 2em; 
+    padding:2em;
+}
+
+.name a{
+    color:darkblue;
+    font-weight:bold;
+}
+
