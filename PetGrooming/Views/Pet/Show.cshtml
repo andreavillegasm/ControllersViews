@@ -6,12 +6,14 @@
 
 <h2>Show Pet</h2>
 <a href="/Pet/List">Go Back</a>
-<a href="/Pet/Update/@Model.PetID">Update</a>
-<a href="">Delete</a>
+
 
 
 <div>Name : @Model.PetName</div>
 <div>Weight : @Model.Weight</div>
 <div>Species : @Model.Species.Name</div>
 <div>Notes : @Model.Notes</div>
+
+<a href="/Pet/Update/@Model.PetID">Update</a>
+<a href="/Pet/Delete/@Model.PetID">Delete</a>
 

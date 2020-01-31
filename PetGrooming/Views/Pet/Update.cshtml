@@ -17,12 +17,14 @@
 
             foreach (var species in Model.species)
             {
-                string selected = "";
                 if(species.SpeciesID == Model.pet.SpeciesID)
                 {
-                    selected = "selected";
-                }
                 <option value="@species.SpeciesID" selected>@species.Name</option>
+                } else
+                {
+                <option value="@species.SpeciesID" >@species.Name</option>
+                }
+
             }
         }
     </select>

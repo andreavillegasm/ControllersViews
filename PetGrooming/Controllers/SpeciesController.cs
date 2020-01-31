@@ -80,7 +80,7 @@ namespace PetGrooming.Controllers
             return RedirectToAction("List");
         }
 
-        // (optional) delete
+        // delete
         public ActionResult Delete(int id)
         {
             string query = "delete from species where SpeciesID=@id";
