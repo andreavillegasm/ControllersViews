@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using PetGrooming.Data;
 using PetGrooming.Models;
+using PetGrooming.Models.ViewModels;
 using System.Diagnostics;
 
 namespace PetGrooming.Controllers
@@ -117,14 +118,33 @@ namespace PetGrooming.Controllers
             //need information about a particular pet
             Pet selectedpet = db.Pets.SqlQuery("select * from pets where petid = @id", new SqlParameter("@id",id)).FirstOrDefault();
 
-            return View(selectedpet);
+            // need information about all species
+            string query = "select * from species";
+            List<Species> selectedspecies = db.Species.SqlQuery(query).ToList();
+
+            //Create an istance of our viewmodel
+            UpdatePet viewmodel = new UpdatePet();
+            viewmodel.pet = selectedpet;
+            viewmodel.species = selectedspecies; 
+
+            return View(viewmodel);
         }
 
         [HttpPost]
-        public ActionResult Update(string PetName, string PetColor, double PetWeight)
+        public ActionResult Update(int id, string PetName, string PetColor, double PetWeight, String PetNotes)
         {
 
             Debug.WriteLine("I am trying to edit a pet's name to "+PetName+" and change the weight to "+PetWeight.ToString());
+            string query = "update pets set PetName=@PetName, Weight=@PetWeight, color=@PetColor, Notes=@PetNotes where PetID=@id";
+            SqlParameter[] parameters = new SqlParameter[5]; // 5 pieces of information to pass
+            parameters[0] = new SqlParameter("@PetName", PetName);
+            parameters[1] = new SqlParameter("@PetWeight", PetWeight); ;
+            parameters[2] = new SqlParameter("@PetColor", PetColor); ;
+            parameters[3] = new SqlParameter("@PetNotes", PetNotes); ;
+            parameters[4] = new SqlParameter("@id", id); ;
+
+            db.Database.ExecuteSqlCommand(query,parameters);
+
 
             //logic for updating the pet in the database goes here
             return RedirectToAction("List");
