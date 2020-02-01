@@ -131,17 +131,18 @@ namespace PetGrooming.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(int id, string PetName, string PetColor, double PetWeight, String PetNotes)
+        public ActionResult Update(int id, string PetName, string PetColor, int SpeciesID, double PetWeight, String PetNotes)
         {
 
             Debug.WriteLine("I am trying to edit a pet's name to "+PetName+" and change the weight to "+PetWeight.ToString());
-            string query = "update pets set PetName=@PetName, Weight=@PetWeight, color=@PetColor, Notes=@PetNotes where PetID=@id";
-            SqlParameter[] parameters = new SqlParameter[5]; // 5 pieces of information to pass
+            string query = "update pets set PetName=@PetName, Weight=@PetWeight, color=@PetColor, SpeciesID=@SpeciesID, Notes=@PetNotes where PetID=@id";
+            SqlParameter[] parameters = new SqlParameter[6]; //6 pieces of information to pass
             parameters[0] = new SqlParameter("@PetName", PetName);
-            parameters[1] = new SqlParameter("@PetWeight", PetWeight); ;
-            parameters[2] = new SqlParameter("@PetColor", PetColor); ;
-            parameters[3] = new SqlParameter("@PetNotes", PetNotes); ;
-            parameters[4] = new SqlParameter("@id", id); ;
+            parameters[1] = new SqlParameter("@PetWeight", PetWeight);
+            parameters[2] = new SqlParameter("@PetColor", PetColor);
+            parameters[3] = new SqlParameter("@SpeciesID", SpeciesID);
+            parameters[4] = new SqlParameter("@PetNotes", PetNotes);
+            parameters[5] = new SqlParameter("@id", id);
 
             db.Database.ExecuteSqlCommand(query,parameters);
 
